@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "Megamenu",
+  name: "Menu",
   props: {
     menuItems: {
       type: Array,
@@ -14,8 +14,8 @@ export default defineComponent({
     },
     columns: {
       type: Number,
-      default: 1
-    }
+      default: 1,
+    },
   },
   setup() {},
 });
@@ -34,7 +34,7 @@ export default defineComponent({
           <span v-if="item.description">{{ item.description }}</span>
         </div>
       </div>
-      <Megamenu
+      <Menu
         v-if="item.children"
         :menu-items="item.children"
         :isRoot="false"
@@ -59,21 +59,16 @@ ul {
 
 .container {
   width: 100%;
-  height: 64px !important;
+  height: 100%;
   display: flex;
   font-family: "HarmonyOs Sans";
   font-weight: 400;
   border-bottom: 1px solid #f4f5f6;
   background: #fff;
-}
-
-.container {
-  display: flex;
-  height: 100%;
   margin: 0;
+  display: flex;
   padding: 0;
 }
-
 .container > li {
   min-width: auto !important;
   display: flex;
@@ -102,6 +97,15 @@ ul {
   transform: translateY(100%) !important;
 }
 
+.container > li > ul {
+  display: grid !important;
+  scale: 0;
+}
+
+.container > li:hover > ul {
+  scale: 1;
+}
+
 .container > li ul {
   width: max-content;
   border-radius: 10px;
@@ -113,7 +117,10 @@ ul {
   gap: 12px;
   padding: 20px;
   background: #fff;
+  transform-origin: bottom center;
+  transition: 0.2s;
 }
+
 
 .container li:hover > ul {
   display: grid;
@@ -178,36 +185,36 @@ ul {
 @font-face {
   font-family: "HarmonyOS Sans";
   font-weight: 900;
-  src: url("../assets/fonts/HarmonyOS_Sans_Black.woff2");
+  src: url("../../assets/fonts/HarmonyOS_Sans_Black.woff2");
 }
 
 @font-face {
   font-family: "HarmonyOS Sans";
   font-weight: 700;
-  src: url("../assets/fonts/HarmonyOS_Sans_Bold.woff2");
+  src: url("../../assets/fonts/HarmonyOS_Sans_Bold.woff2");
 }
 
 @font-face {
   font-family: "HarmonyOS Sans";
   font-weight: 500;
-  src: url("../assets/fonts/HarmonyOS_Sans_Medium.woff2");
+  src: url("../../assets/fonts/HarmonyOS_Sans_Medium.woff2");
 }
 
 @font-face {
   font-family: "HarmonyOS Sans";
   font-weight: 400;
-  src: url("../assets/fonts/HarmonyOS_Sans_Regular.woff2");
+  src: url("../../assets/fonts/HarmonyOS_Sans_Regular.woff2");
 }
 
 @font-face {
   font-family: "HarmonyOS Sans";
   font-weight: 300;
-  src: url("../assets/fonts/HarmonyOS_Sans_Light.woff2");
+  src: url("../../assets/fonts/HarmonyOS_Sans_Light.woff2");
 }
 
 @font-face {
   font-family: "HarmonyOS Sans";
   font-weight: 100;
-  src: url("../assets/fonts/HarmonyOS_Sans_Thin.woff2");
+  src: url("../../assets/fonts/HarmonyOS_Sans_Thin.woff2");
 }
 </style>
