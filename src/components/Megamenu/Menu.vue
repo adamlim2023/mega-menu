@@ -31,7 +31,7 @@ export default defineComponent({
         listElem.setAttribute(
           "style",
           `display: ${
-            display !== `none` ? `none !important` : `grid !important`
+            display !== `none` ? `none` : `grid`
           }`
         );
       }
@@ -145,7 +145,7 @@ ul {
   }
 
   .container li:hover > ul {
-    display: grid;
+    display: grid !important;
   }
 
   .container > li > ul {
