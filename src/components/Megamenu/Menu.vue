@@ -30,7 +30,9 @@ export default defineComponent({
         console.log(display);
         listElem.setAttribute(
           "style",
-          `display: ${display !== `none` ? `none !important` : `grid !important`}`
+          `display: ${
+            display !== `none` ? `none !important` : `grid !important`
+          }`
         );
       }
     };
@@ -116,7 +118,6 @@ ul {
 
 .container {
   width: 100%;
-  height: 100%;
   display: flex;
   font-family: "HarmonyOs Sans";
   font-weight: 400;
@@ -150,6 +151,7 @@ ul {
 @media (min-width: 750px) {
   .container {
     display: flex !important;
+    height: 100%;
   }
 
   .container > li > ul {
