@@ -24,10 +24,13 @@ export default defineComponent({
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const arrowStyle = window.getComputedStyle(arrowElem);
         const transform = arrowStyle.transform;
+        console.log(transform, 'here');
         arrowElem.setAttribute(
           "style",
           `transform: ${transform === "matrix(1, 0, 0, 1, 0, 0)" ? "matrix(-1, 0, 0, -1, 0, 0)" : "matrix(1, 0, 0, 1, 0, 0)"}`
         );
+
+
         const listElem = event.target.closest("li").lastChild;
         const listStyle = window.getComputedStyle(listElem);
         const display = listStyle.display;
@@ -86,7 +89,7 @@ ul {
   right: 20px;
   top: 12px;
   display: none;
-  transition: 0.2s;
+  transition: 0.1s;
   transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
