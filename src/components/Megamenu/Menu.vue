@@ -125,10 +125,6 @@ ul {
   border-radius: 0px !important;
 }
 
-.container > li:hover {
-  background: #fff !important;
-}
-
 .container > li > div > div > span:first-child {
   font-size: 14px !important;
   color: #000 !important;
@@ -146,6 +142,7 @@ ul {
   .container {
     display: flex !important;
   }
+
   .container > li > ul {
     transform: translate(0, 100%) !important;
   }
@@ -156,15 +153,20 @@ ul {
 
   .container li:hover > ul {
     display: grid !important;
+    scale: 1;
+  }
+
+  .container li:hover {
+    background: #f4f5f6;
+  }
+
+  .container > li:hover {
+    background: #fff !important;
   }
 }
 
 .container > li ul {
   scale: 0;
-}
-
-.container li:hover > ul {
-  scale: 1;
 }
 
 .container > li ul {
@@ -191,10 +193,6 @@ ul {
   cursor: pointer;
   padding: 8px;
   border-radius: 8px;
-}
-
-.container li:hover {
-  background: #f4f5f6;
 }
 
 .container li > div {
