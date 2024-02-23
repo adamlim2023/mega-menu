@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <Menu :menu-items="menuItems" :open="isOpen" />
+    <div class="menu" v-show="isOpen">
+      <Menu :menu-items="menuItems" />
+    </div>
     <button @click="handleToggleOpen" class="menu-button">
       <i class="fas fa-bars" v-if="!isOpen"></i>
       <i class="fas fa-close" v-else></i>
@@ -230,6 +232,10 @@ const handleToggleOpen = () => {
   background: #fff;
 }
 
+.menu {
+  height: 100%;
+}
+
 .menu-button {
   width: 32px;
   height: 32px;
@@ -243,6 +249,12 @@ const handleToggleOpen = () => {
   right: 20px;
   transform: translateY(-50%);
   display: none;
+}
+
+@media (min-width: 750px) {
+  .menu {
+    display: block !important;
+  }
 }
 
 @media (max-width: 750px) {

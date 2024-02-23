@@ -13,24 +13,31 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    open: {
-      type: Boolean,
-      default: false,
-    },
     columns: {
       type: Number,
       default: 1,
     },
   },
   setup() {
-    const isOpen = ref(false);
-    const handleToggleOpen = (item) => {
+    const handleToggleOpen = (event, item) => {
       if (item.children) {
-        isOpen.value = !isOpen.value;
+        const arrowElem = event.target.closest("li").firstChild.lastChild;
+        const angle = arrowElem.style.rotate;
+        arrowElem.style.rotate = angle === "" ? "180deg" : "";
+        const listElem = event.target.closest("li").lastChild;
+        const listStyle = window.getComputedStyle(listElem);
+        const display = listStyle.display;
+        console.log(display);
+        listElem.setAttribute(
+          "style",
+          `display: ${
+            display !== `none` ? `none !important` : `grid !important`
+          }`
+        );
       }
     };
 
-    return { isOpen, handleToggleOpen };
+    return { handleToggleOpen };
   },
 });
 </script>
@@ -39,27 +46,21 @@ export default defineComponent({
   <ul
     :class="{ container: isRoot }"
     :style="{ 'grid-template-columns': 'auto '.repeat(columns).slice(0, -1) }"
-    v-show="open"
   >
     <li v-for="item in menuItems" :key="item.key">
-      <div @click="() => handleToggleOpen(item)">
+      <div @click="(e) => handleToggleOpen(e, item)">
         <i :class="item.icon" v-if="item.icon"></i>
         <div>
           <span>{{ item.title }}</span>
           <span v-if="item.description">{{ item.description }}</span>
         </div>
-        <i
-          class="fas fa-angle-down arrow"
-          v-if="item.children"
-          :class="!isOpen ? 'fa-angle-down' : 'fa-angle-up'"
-        ></i>
+        <i class="fas fa-angle-down arrow" v-if="item.children"></i>
       </div>
       <Menu
         v-if="item.children"
         :menu-items="item.children"
         :isRoot="false"
         :columns="item.childrenColumns"
-        :open="isOpen"
       />
     </li>
   </ul>
@@ -144,13 +145,13 @@ ul {
   }
 
   .container li:hover > ul {
-    display: grid !important;
+    display: grid;
   }
-}
 
-.container > li > ul {
-  display: grid !important;
-  scale: 0;
+  .container > li > ul {
+    display: grid;
+    scale: 0;
+  }
 }
 
 .container > li:hover > ul {
@@ -246,7 +247,7 @@ ul {
     width: 100% !important;
     position: relative;
     scale: 1 !important;
-    display: grid !important;
+    display: none;
     top: auto !important;
     right: auto !important;
     bottom: auto !important;
