@@ -101,6 +101,10 @@ ul {
     display: grid !important;
     scale: 1;
   }
+
+  .container li:hover > div .arrow {
+    transform: matrix(-1, 0, 0, -1, 0, 0);
+  }
 }
 
 @media screen and (orientation: portrait) and (max-width: 750px) {
