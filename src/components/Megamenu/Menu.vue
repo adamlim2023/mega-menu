@@ -25,6 +25,7 @@ export default defineComponent({
         const arrowStyle = window.getComputedStyle(arrowElem);
         const transform = arrowStyle.transform;
         console.log(transform, 'here');
+        return;
         arrowElem.setAttribute(
           "style",
           `transform: ${transform === "matrix(1, 0, 0, 1, 0, 0)" ? "matrix(-1, 0, 0, -1, 0, 0)" : "matrix(1, 0, 0, 1, 0, 0)"}`
