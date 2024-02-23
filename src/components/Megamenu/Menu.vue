@@ -39,7 +39,7 @@ export default defineComponent({
   <ul
     :class="{ container: isRoot }"
     :style="{ 'grid-template-columns': 'auto '.repeat(columns).slice(0, -1) }"
-    v-if="open"
+    v-show="open"
   >
     <li v-for="item in menuItems" :key="item.key">
       <div @click="() => handleToggleOpen(item)">
@@ -136,8 +136,15 @@ ul {
 }
 
 @media (min-width: 750px) {
+  .container {
+    display: flex !important;
+  }
   .container > li > ul {
     transform: translateY(100%) !important;
+  }
+
+  .container li:hover > ul {
+    display: grid !important;
   }
 }
 
@@ -163,10 +170,6 @@ ul {
   background: #fff;
   transform-origin: bottom center;
   transition: 0.2s;
-}
-
-.container li:hover > ul {
-  display: grid;
 }
 
 .container ul {
