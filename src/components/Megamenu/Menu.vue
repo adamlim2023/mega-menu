@@ -249,6 +249,7 @@ ul {
     flex-direction: column;
     overflow-y: scroll;
     padding: 10px 0;
+    padding-bottom: 100px;
   }
 
   .container ul {

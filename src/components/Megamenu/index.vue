@@ -235,7 +235,9 @@ const handleToggleDirection = () => {
 .header {
   width: 100%;
   height: 64px;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   border-bottom: 1px solid #f4f5f6;
   background: #fff;
 }
