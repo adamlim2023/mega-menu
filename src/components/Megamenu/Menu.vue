@@ -23,6 +23,7 @@ export default defineComponent({
       if (item.children) {
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const angle = arrowElem.style.rotate;
+        alert(rotate);
         arrowElem.style.rotate = angle === "" ? "180deg" : "";
         const listElem = event.target.closest("li").lastChild;
         const listStyle = window.getComputedStyle(listElem);
