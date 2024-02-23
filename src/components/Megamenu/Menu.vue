@@ -141,7 +141,7 @@ ul {
     display: flex !important;
   }
   .container > li > ul {
-    transform: translateY(100%) !important;
+    transform: translateY(100%);
   }
 
   .container li:hover > ul {
