@@ -26,7 +26,11 @@ export default defineComponent({
         const transform = arrowStyle.transform;
         arrowElem.setAttribute(
           "style",
-          `transform: ${transform === "matrix(1, 0, 0, 1, 0, 0)" ? "matrix(-1, 0, 0, -1, 0, 0)" : "matrix(1, 0, 0, 1, 0, 0)"}`
+          `transform: ${
+            transform === "matrix(1, 0, 0, 1, 0, 0)"
+              ? "matrix(-1, 0, 0, -1, 0, 0) !important"
+              : "matrix(1, 0, 0, 1, 0, 0) !important"
+          }`
         );
 
         const listElem = event.target.closest("li").lastChild;
@@ -88,7 +92,7 @@ ul {
   top: 12px;
   display: none;
   transition: 1s all;
-  transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0) !important;
 }
 
 [dir="rtl"] .arrow {
@@ -103,7 +107,7 @@ ul {
   }
 
   .container li:hover > div .arrow {
-    transform: matrix(-1, 0, 0, -1, 0, 0);
+    transform: matrix(-1, 0, 0, -1, 0, 0) !important;
   }
 }
 
