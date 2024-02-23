@@ -24,6 +24,7 @@ export default defineComponent({
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const arrowStyle = window.getComputedStyle(arrowElem);
         const transform = arrowStyle.transform;
+        console.log(transform);
         arrowElem.setAttribute(
           "style",
           `transform: ${
@@ -96,7 +97,6 @@ ul {
   top: 12px;
   display: none;
   transition: 1s all;
-  transform: matrix(1, 0, 0, 1, 0, 0) !important;
 }
 
 [dir="rtl"] .arrow {
