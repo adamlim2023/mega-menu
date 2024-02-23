@@ -243,13 +243,12 @@ ul {
   .container {
     position: fixed;
     top: 65px;
-    height: calc(100vh - 65px);
+    height: calc(100vh - 200px);
     right: 0;
     left: 0;
     flex-direction: column;
     overflow-y: scroll;
     padding: 10px 0;
-    padding-bottom: 100px;
   }
 
   .container ul {
