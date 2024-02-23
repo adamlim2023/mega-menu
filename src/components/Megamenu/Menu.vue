@@ -24,6 +24,7 @@ export default defineComponent({
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const arrowStyle = window.getComputedStyle(arrowElem);
         const rotate = arrowStyle.rotate;
+        console.log(rotate);
         arrowElem.setAttribute(
           "style",
           `rotate: ${rotate === "0deg" ? "180deg" : "0deg"}`
@@ -96,14 +97,14 @@ ul {
   right: auto !important;
 }
 
+.container li:hover > div .arrow {
+  rotate: 180deg;
+}
+
 @media screen and (orientation: landscape) and (min-width: 751px) {
   .container li:hover > ul {
     display: grid !important;
     scale: 1;
-  }
-
-  .container li:hover > div .arrow {
-    rotate: 180deg;
   }
 }
 
