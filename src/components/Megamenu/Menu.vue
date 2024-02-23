@@ -62,7 +62,11 @@ export default defineComponent({
           <span>{{ item.title }}</span>
           <span v-if="item.description">{{ item.description }}</span>
         </div>
-        <i class="fas fa-angle-down arrow" v-if="item.children"></i>
+        <i
+          class="fas fa-angle-down arrow"
+          style="transform: matrix(1, 0, 0, 1, 0, 0) !important"
+          v-if="item.children"
+        ></i>
       </div>
       <template v-if="item.children">
         <Menu
