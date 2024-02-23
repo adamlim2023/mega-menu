@@ -87,6 +87,7 @@ ul {
   top: 12px;
   display: none;
   transition: 0.2s;
+  rotate: 0deg;
 }
 
 [dir="rtl"] .arrow {
