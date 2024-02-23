@@ -1,11 +1,17 @@
 <template>
   <div class="header">
-    <Menu :menu-items="menuItems" />
+    <Menu :menu-items="menuItems" :open="isOpen" />
+    <button @click="handleToggleOpen" class="menu-button">
+      <i class="fas fa-bars" v-if="!isOpen"></i>
+      <i class="fas fa-close" v-else></i>
+    </button>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import Menu from "./Menu.vue";
+const isOpen = ref(false);
 const menuItems = [
   {
     key: "buy",
@@ -208,11 +214,78 @@ const menuItems = [
     ],
   },
 ];
+
+const handleToggleOpen = () => {
+  isOpen.value = !isOpen.value;
+}
 </script>
 
 <style scoped>
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css";
 .header {
   width: 100%;
   height: 64px;
+  position: relative;
+  border-bottom: 1px solid #f4f5f6;
+  background: #fff;
+}
+
+.menu-button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: none;
+}
+
+@media(max-width: 750px) {
+  .menu-button {
+    display: block;
+  }
+}
+
+/* import fonts */
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-weight: 900;
+  src: url("../../assets/fonts/HarmonyOS_Sans_Black.woff2");
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-weight: 700;
+  src: url("../../assets/fonts/HarmonyOS_Sans_Bold.woff2");
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-weight: 500;
+  src: url("../../assets/fonts/HarmonyOS_Sans_Medium.woff2");
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-weight: 400;
+  src: url("../../assets/fonts/HarmonyOS_Sans_Regular.woff2");
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-weight: 300;
+  src: url("../../assets/fonts/HarmonyOS_Sans_Light.woff2");
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-weight: 100;
+  src: url("../../assets/fonts/HarmonyOS_Sans_Thin.woff2");
 }
 </style>

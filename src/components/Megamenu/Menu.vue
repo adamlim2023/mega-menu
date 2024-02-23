@@ -1,5 +1,6 @@
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
+import Menu from "./Menu.vue";
 
 export default defineComponent({
   name: "Menu",
@@ -16,8 +17,23 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
+    open: {
+      type: Boolean,
+      default: false,
+    },
   },
-  setup() {},
+  setup() {
+    const state = reactive({
+      isOpen: false
+    });
+    const handleToggleOpen = (item) => {
+      if (item.children) {
+        state.isOpen = !state.isOpen
+      }
+    };
+
+    return { state, handleToggleOpen };
+  },
 });
 </script>
 
@@ -25,9 +41,10 @@ export default defineComponent({
   <ul
     :class="{ container: isRoot }"
     :style="{ 'grid-template-columns': 'auto '.repeat(columns).slice(0, -1) }"
+    v-if="open"
   >
     <li v-for="item in menuItems" :key="item.key">
-      <div>
+      <div @click="() => handleToggleOpen(item)">
         <i :class="item.icon" v-if="item.icon"></i>
         <div>
           <span>{{ item.title }}</span>
@@ -39,14 +56,13 @@ export default defineComponent({
         :menu-items="item.children"
         :isRoot="false"
         :columns="item.childrenColumns"
+        :open="state.isOpen"
       />
     </li>
   </ul>
 </template>
 
 <style scoped>
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css";
-
 .container * {
   box-sizing: border-box;
 }
@@ -63,8 +79,6 @@ ul {
   display: flex;
   font-family: "HarmonyOs Sans";
   font-weight: 400;
-  border-bottom: 1px solid #f4f5f6;
-  background: #fff;
   margin: 0;
   display: flex;
   padding: 0;
@@ -94,7 +108,12 @@ ul {
   bottom: 0;
   left: 0;
   right: auto !important;
-  transform: translateY(100%) !important;
+}
+
+@media (min-width: 750px) {
+  .container > li > ul {
+    transform: translateY(100%) !important;
+  }
 }
 
 .container > li > ul {
@@ -120,7 +139,6 @@ ul {
   transform-origin: bottom center;
   transition: 0.2s;
 }
-
 
 .container li:hover > ul {
   display: grid;
@@ -180,41 +198,62 @@ ul {
   display: block;
 }
 
-/* import fonts */
+@media (max-width: 750px) {
+  .container {
+    position: fixed;
+    top: 65px;
+    height: calc(100vh - 65px);
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 10px 0;
+  }
 
-@font-face {
-  font-family: "HarmonyOS Sans";
-  font-weight: 900;
-  src: url("../../assets/fonts/HarmonyOS_Sans_Black.woff2");
-}
+  .container ul {
+    width: 100% !important;
+    position: relative;
+    scale: 1 !important;
+    display: grid !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    grid-template-columns: auto !important;
+  }
 
-@font-face {
-  font-family: "HarmonyOS Sans";
-  font-weight: 700;
-  src: url("../../assets/fonts/HarmonyOS_Sans_Bold.woff2");
-}
+  .container > li::after {
+    display: none !important;
+  }
 
-@font-face {
-  font-family: "HarmonyOS Sans";
-  font-weight: 500;
-  src: url("../../assets/fonts/HarmonyOS_Sans_Medium.woff2");
-}
+  .container li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 !important;
+    height: auto !important;
+    border-radius: 0 !important;
+  }
 
-@font-face {
-  font-family: "HarmonyOS Sans";
-  font-weight: 400;
-  src: url("../../assets/fonts/HarmonyOS_Sans_Regular.woff2");
-}
+  .container li > div {
+    gap: 22px !important;
+  }
 
-@font-face {
-  font-family: "HarmonyOS Sans";
-  font-weight: 300;
-  src: url("../../assets/fonts/HarmonyOS_Sans_Light.woff2");
-}
+  .container li > div > div > span:first-child {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+  }
 
-@font-face {
-  font-family: "HarmonyOS Sans";
-  font-weight: 100;
-  src: url("../../assets/fonts/HarmonyOS_Sans_Thin.woff2");
+  .container > li > div {
+    width: 100%;
+    padding: 0 20px;
+    min-height: 40px;
+  }
+  .container li > div {
+    padding: 8px 20px;
+  }
 }
 </style>
