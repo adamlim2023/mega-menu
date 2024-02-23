@@ -20,6 +20,7 @@ export default defineComponent({
   },
   setup() {
     const handleToggleOpen = (event, item) => {
+      event.preventDefault();
       if (item.children) {
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const arrowStyle = window.getComputedStyle(arrowElem);
@@ -55,7 +56,7 @@ export default defineComponent({
     :style="{ 'grid-template-columns': 'auto '.repeat(columns).slice(0, -1) }"
   >
     <li v-for="item in menuItems" :key="item.key">
-      <div @click="(e) => handleToggleOpen(e, item)">
+      <div @touchstart="(e) => handleToggleOpen(e, item)">
         <i :class="item.icon" v-if="item.icon"></i>
         <div>
           <span>{{ item.title }}</span>
