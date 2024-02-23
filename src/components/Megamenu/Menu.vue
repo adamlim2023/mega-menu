@@ -23,10 +23,10 @@ export default defineComponent({
       if (item.children) {
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const arrowStyle = window.getComputedStyle(arrowElem);
-        const angle = arrowStyle.rotate;
+        const transform = arrowStyle.transform;
         arrowElem.setAttribute(
           "style",
-          `rotate: ${angle === "180deg" ? "0deg" : "180deg"}`
+          `transform: ${transform === "matrix(1, 0, 0, 1, 0, 0)" ? "matrix(-1, 0, 0, -1, 0, 0)" : "matrix(1, 0, 0, 1, 0, 0)"}`
         );
         const listElem = event.target.closest("li").lastChild;
         const listStyle = window.getComputedStyle(listElem);
@@ -87,7 +87,7 @@ ul {
   top: 12px;
   display: none;
   transition: 0.2s;
-  rotate: 0deg;
+  transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
 [dir="rtl"] .arrow {
