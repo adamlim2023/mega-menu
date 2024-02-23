@@ -93,13 +93,13 @@ ul {
 
 @media screen and (orientation: portrait) and (max-width: 750px) {
   .container {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 200px) !important;
   }
 }
 
 @media screen and (orientation: landscape) and (max-width: 750px) {
   .container {
-    height: calc(100vh - 120px);
+    height: calc(100vh - 120px) !important;
   }
   .container li ul {
     transform: none !important;
