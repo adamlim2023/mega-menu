@@ -20,18 +20,14 @@ export default defineComponent({
   },
   setup() {
     const handleToggleOpen = (event, item) => {
-      event.preventDefault();
       if (item.children) {
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const arrowStyle = window.getComputedStyle(arrowElem);
         const transform = arrowStyle.transform;
-        console.log(transform, 'here');
-        return;
         arrowElem.setAttribute(
           "style",
           `transform: ${transform === "matrix(1, 0, 0, 1, 0, 0)" ? "matrix(-1, 0, 0, -1, 0, 0)" : "matrix(1, 0, 0, 1, 0, 0)"}`
         );
-
 
         const listElem = event.target.closest("li").lastChild;
         const listStyle = window.getComputedStyle(listElem);
@@ -56,7 +52,7 @@ export default defineComponent({
     :style="{ 'grid-template-columns': 'auto '.repeat(columns).slice(0, -1) }"
   >
     <li v-for="item in menuItems" :key="item.key">
-      <div @touchstart="(e) => handleToggleOpen(e, item)">
+      <div @click="(e) => handleToggleOpen(e, item)">
         <i :class="item.icon" v-if="item.icon"></i>
         <div>
           <span>{{ item.title }}</span>
@@ -98,6 +94,13 @@ ul {
 [dir="rtl"] .arrow {
   left: 20px;
   right: auto !important;
+}
+
+@media screen and (orientation: landscape) and (min-width: 750px) {
+  .container li:hover > ul {
+    display: grid !important;
+    scale: 1;
+  }
 }
 
 @media screen and (orientation: portrait) and (max-width: 750px) {
@@ -169,11 +172,6 @@ ul {
 
   .container > li ul {
     transform: translate(100%, 0);
-  }
-
-  .container li:hover > ul {
-    display: grid !important;
-    scale: 1;
   }
 
   .container li:hover {
