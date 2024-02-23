@@ -89,7 +89,16 @@ ul {
   right: auto !important;
 }
 
+@media screen and (orientation: portrait) and (max-width: 750px) {
+  .container {
+    height: calc(100vh - 200px);
+  }
+}
+
 @media screen and (orientation: landscape) and (max-width: 750px) {
+  .container {
+    height: calc(100vh - 120px);
+  }
   .container li ul {
     transform: none !important;
   }
@@ -241,7 +250,6 @@ ul {
   .container {
     position: fixed;
     top: 65px;
-    height: calc(100vh - 120px);
     right: 0;
     left: 0;
     flex-direction: column;
