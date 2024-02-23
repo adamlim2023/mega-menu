@@ -279,7 +279,8 @@ const handleToggleDirection = () => {
 }
 
 [dir="rtl"] .menu-button {
-  right: 20px;
+  right: auto !important;
+  left: 56px;
 }
 
 @media (min-width: 750px) {
