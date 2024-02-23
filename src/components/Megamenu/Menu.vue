@@ -26,7 +26,7 @@ export default defineComponent({
         const angle = arrowStyle.rotate;
         arrowElem.setAttribute(
           "style",
-          `rotate: ${angle === "none" ? "180deg" : ""}`
+          `rotate: ${angle === "180deg" ? "0deg" : "180deg"}`
         );
         const listElem = event.target.closest("li").lastChild;
         const listStyle = window.getComputedStyle(listElem);
