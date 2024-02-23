@@ -30,9 +30,7 @@ export default defineComponent({
         console.log(display);
         listElem.setAttribute(
           "style",
-          `display: ${
-            display !== `none` ? `none` : `grid`
-          }`
+          `display: ${display !== `none` ? `none` : `grid`}`
         );
       }
     };
@@ -56,12 +54,13 @@ export default defineComponent({
         </div>
         <i class="fas fa-angle-down arrow" v-if="item.children"></i>
       </div>
-      <Menu
-        v-if="item.children"
-        :menu-items="item.children"
-        :isRoot="false"
-        :columns="item.childrenColumns"
-      />
+      <template v-if="item.children">
+        <Menu
+          :menu-items="item.children"
+          :isRoot="false"
+          :columns="item.childrenColumns"
+        />
+      </template>
     </li>
   </ul>
 </template>
@@ -82,6 +81,7 @@ ul {
   right: 20px;
   top: 12px;
   display: none;
+  transition: 0.2s;
 }
 
 [dir="rtl"] .arrow {
@@ -147,14 +147,13 @@ ul {
   .container li:hover > ul {
     display: grid !important;
   }
-
-  .container > li > ul {
-    display: grid;
-    scale: 0;
-  }
 }
 
-.container > li:hover > ul {
+.container > li ul {
+  scale: 0;
+}
+
+.container li:hover > ul {
   scale: 1;
 }
 
@@ -165,12 +164,12 @@ ul {
   top: 0;
   right: 0;
   transform: translateX(100%);
-  display: none;
   gap: 12px;
   padding: 20px;
   background: #fff;
   transform-origin: bottom center;
-  transition: 0.2s;
+  transition-property: all;
+  transition: 0.2s all;
 }
 
 .container ul {

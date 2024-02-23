@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :dir="dir ? 'ltr' : 'rtl'">
     <div class="menu" v-show="isOpen">
       <Menu :menu-items="menuItems" />
     </div>
@@ -7,13 +7,17 @@
       <i class="fas fa-bars" v-if="!isOpen"></i>
       <i class="fas fa-close" v-else></i>
     </button>
+    <button @click="handleToggleDirection" class="direction-button">
+      <i class="fas fa-globe"></i>
+    </button>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import Menu from "./Menu.vue";
-const isOpen = ref(true);
+const isOpen = ref(false);
+const dir = ref(true);
 const menuItems = [
   {
     key: "buy",
@@ -220,6 +224,10 @@ const menuItems = [
 const handleToggleOpen = () => {
   isOpen.value = !isOpen.value;
 };
+
+const handleToggleDirection = () => {
+  dir.value = !dir.value;
+};
 </script>
 
 <style scoped>
@@ -236,7 +244,7 @@ const handleToggleOpen = () => {
   height: 100%;
 }
 
-.menu-button {
+.direction-button {
   width: 32px;
   height: 32px;
   padding: 0;
@@ -248,7 +256,30 @@ const handleToggleOpen = () => {
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
+}
+
+.menu-button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  right: 56px;
+  transform: translateY(-50%);
   display: none;
+}
+
+[dir="rtl"] .direction-button {
+  right: auto !important;
+  left: 20px;
+}
+
+[dir="rtl"] .menu-button {
+  right: 20px;
 }
 
 @media (min-width: 750px) {
