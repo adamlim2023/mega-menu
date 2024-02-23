@@ -11,7 +11,7 @@
 <script setup>
 import { ref } from "vue";
 import Menu from "./Menu.vue";
-const isOpen = ref(false);
+const isOpen = ref(true);
 const menuItems = [
   {
     key: "buy",
@@ -217,7 +217,7 @@ const menuItems = [
 
 const handleToggleOpen = () => {
   isOpen.value = !isOpen.value;
-}
+};
 </script>
 
 <style scoped>
@@ -245,7 +245,7 @@ const handleToggleOpen = () => {
   display: none;
 }
 
-@media(max-width: 750px) {
+@media (max-width: 750px) {
   .menu-button {
     display: block;
   }

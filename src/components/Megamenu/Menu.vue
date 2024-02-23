@@ -1,5 +1,5 @@
 <script>
-import { defineComponent, reactive } from "vue";
+import { defineComponent, ref } from "vue";
 import Menu from "./Menu.vue";
 
 export default defineComponent({
@@ -13,26 +13,24 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    columns: {
-      type: Number,
-      default: 1,
-    },
     open: {
       type: Boolean,
       default: false,
     },
+    columns: {
+      type: Number,
+      default: 1,
+    },
   },
   setup() {
-    const state = reactive({
-      isOpen: false
-    });
+    const isOpen = ref(false);
     const handleToggleOpen = (item) => {
       if (item.children) {
-        state.isOpen = !state.isOpen
+        isOpen.value = !isOpen.value;
       }
     };
 
-    return { state, handleToggleOpen };
+    return { isOpen, handleToggleOpen };
   },
 });
 </script>
@@ -50,13 +48,18 @@ export default defineComponent({
           <span>{{ item.title }}</span>
           <span v-if="item.description">{{ item.description }}</span>
         </div>
+        <i
+          class="fas fa-angle-down arrow"
+          v-if="item.children"
+          :class="!isOpen ? 'fa-angle-down' : 'fa-angle-up'"
+        ></i>
       </div>
       <Menu
         v-if="item.children"
         :menu-items="item.children"
         :isRoot="false"
         :columns="item.childrenColumns"
-        :open="state.isOpen"
+        :open="isOpen"
       />
     </li>
   </ul>
@@ -71,6 +74,28 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.arrow {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  display: none;
+}
+
+[dir="rtl"] .arrow {
+  left: 20px;
+  right: auto !important;
+}
+
+[dir="rtl"] .container > li ul {
+  left: 0 !important;
+  transform: translateX(-100%);
+  right: auto !important;
+}
+
+[dir="rtl"] .container > li > ul {
+  right: 0px !important;
 }
 
 .container {
@@ -199,6 +224,10 @@ ul {
 }
 
 @media (max-width: 750px) {
+  .arrow {
+    display: inline;
+  }
+
   .container {
     position: fixed;
     top: 65px;
