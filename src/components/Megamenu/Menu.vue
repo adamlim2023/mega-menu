@@ -22,8 +22,12 @@ export default defineComponent({
     const handleToggleOpen = (event, item) => {
       if (item.children) {
         const arrowElem = event.target.closest("li").firstChild.lastChild;
-        const angle = arrowElem.style.rotate;
-        arrowElem.setAttribute("style", `rotate: ${angle === "" ? "180deg" : ""}`);
+        const arrowStyle = window.getComputedStyle(arrowElem);
+        const angle = arrowStyle.rotate;
+        arrowElem.setAttribute(
+          "style",
+          `rotate: ${angle === "none" ? "180deg" : ""}`
+        );
         const listElem = event.target.closest("li").lastChild;
         const listStyle = window.getComputedStyle(listElem);
         const display = listStyle.display;
