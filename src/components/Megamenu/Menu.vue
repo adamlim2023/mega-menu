@@ -96,7 +96,7 @@ ul {
   right: 20px;
   top: 12px;
   display: none;
-  transition: 1s all;
+  transition: 0.1s all;
 }
 
 [dir="rtl"] .arrow {
