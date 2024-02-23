@@ -104,7 +104,7 @@ ul {
   right: auto !important;
 }
 
-@media screen and (orientation: landscape) and (min-width: 750px) {
+@media screen and (orientation: landscape) and (min-width: 751px) {
   .container li:hover > ul {
     display: grid !important;
     scale: 1;
