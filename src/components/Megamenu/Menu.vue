@@ -87,7 +87,7 @@ ul {
   right: 20px;
   top: 12px;
   display: none;
-  transition: 0.1s;
+  transition: 1s all;
   transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
