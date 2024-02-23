@@ -141,7 +141,11 @@ ul {
     display: flex !important;
   }
   .container > li > ul {
-    transform: translateY(100%);
+    transform: translate(0, 100%) !important;
+  }
+
+  .container > li ul {
+    transform: translate(100%, 0);
   }
 
   .container li:hover > ul {
@@ -163,7 +167,6 @@ ul {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 20px 0px;
   top: 0;
   right: 0;
-  transform: translateX(100%);
   gap: 12px;
   padding: 20px;
   background: #fff;
