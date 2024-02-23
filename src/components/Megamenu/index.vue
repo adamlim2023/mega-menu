@@ -285,7 +285,7 @@ const handleToggleDirection = () => {
   left: 56px;
 }
 
-@media screen and (min-width: 750px) {
+@media (min-width: 751px) {
   .menu {
     display: block !important;
   }
