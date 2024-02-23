@@ -23,11 +23,10 @@ export default defineComponent({
       if (item.children) {
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const arrowStyle = window.getComputedStyle(arrowElem);
-        const rotate = arrowStyle.rotate;
-        console.log(rotate);
+        const transform = arrowStyle.transform;
         arrowElem.setAttribute(
           "style",
-          `rotate: ${rotate === "0deg" ? "180deg" : "0deg"}`
+          `transform: ${transform === "matrix(1, 0, 0, 1, 0, 0)" ? "matrix(-1, 0, 0, -1, 0, 0)" : "matrix(1, 0, 0, 1, 0, 0)"}`
         );
 
         const listElem = event.target.closest("li").lastChild;
@@ -88,8 +87,8 @@ ul {
   right: 20px;
   top: 12px;
   display: none;
-  transition: 0.1s !important;
-  rotate: 0deg;
+  transition: 0.1s;
+  transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
 [dir="rtl"] .arrow {
@@ -97,14 +96,14 @@ ul {
   right: auto !important;
 }
 
-.container li:hover > div .arrow {
-  rotate: 180deg;
-}
-
-@media screen and (orientation: landscape) and (min-width: 751px) {
+@media screen and (orientation: landscape) and (min-width: 750px) {
   .container li:hover > ul {
     display: grid !important;
     scale: 1;
+  }
+
+  .container li:hover > div .arrow {
+    transform: matrix(-1, 0, 0, -1, 0, 0);
   }
 }
 
@@ -165,7 +164,7 @@ ul {
   right: auto !important;
 }
 
-@media screen and (min-width: 751px) {
+@media screen and (min-width: 750px) {
   .container {
     display: flex !important;
     height: 100%;
