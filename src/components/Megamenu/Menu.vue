@@ -251,6 +251,10 @@ ul {
     padding: 10px 0;
   }
 
+  .container > li > ul {
+    transform: none !important;
+  }
+
   .container ul {
     width: 100% !important;
     position: relative;
