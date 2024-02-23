@@ -20,11 +20,10 @@ export default defineComponent({
   },
   setup() {
     const handleToggleOpen = (event, item) => {
+      alert();
       if (item.children) {
         const arrowElem = event.target.closest("li").firstChild.lastChild;
         const angle = arrowElem.style.rotate;
-        alert(angle);
-        console.log(angle);
         arrowElem.style.rotate = angle === "" ? "180deg" : "";
         const listElem = event.target.closest("li").lastChild;
         const listStyle = window.getComputedStyle(listElem);
