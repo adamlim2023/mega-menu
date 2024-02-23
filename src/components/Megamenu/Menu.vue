@@ -89,6 +89,12 @@ ul {
   right: auto !important;
 }
 
+@media screen and (orientation: landscape) and (max-width: 750px) {
+  .container li ul {
+    transform: none !important;
+  }
+}
+
 [dir="rtl"] .container > li ul {
   left: 0 !important;
   transform: translateX(-100%);
