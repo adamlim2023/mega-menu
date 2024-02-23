@@ -30,7 +30,7 @@ export default defineComponent({
         console.log(display);
         listElem.setAttribute(
           "style",
-          `display: ${display !== `none` ? `none` : `grid`}`
+          `display: ${display !== `none` ? `none !important` : `grid !important`}`
         );
       }
     };
@@ -241,7 +241,7 @@ ul {
   .container {
     position: fixed;
     top: 65px;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 100px);
     right: 0;
     left: 0;
     flex-direction: column;
