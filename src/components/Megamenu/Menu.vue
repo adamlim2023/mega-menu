@@ -156,7 +156,7 @@ ul {
   right: auto !important;
 }
 
-@media (min-width: 750px) {
+@media screen and (min-width: 750px) {
   .container {
     display: flex !important;
     height: 100%;
@@ -252,7 +252,7 @@ ul {
   display: block;
 }
 
-@media (max-width: 750px) {
+@media screen and (max-width: 750px) {
   .arrow {
     display: inline;
   }
